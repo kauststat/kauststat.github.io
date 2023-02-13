@@ -364,7 +364,7 @@ Although I said it is more common to first create a GitHub repository and then l
 
 You will end up with a window that looks like the below image.
 
-![](images/newproject.png)
+![](images/newproject.png){width=70%}
 
 However, after creating the project we still have to connect it to your GitHub repository. To do this, [create a new repository **on Github**](https://github.com/new) (as we have already done before), and copy your repository address (after selecting the SSH protocol). Again, it will look like
 ```{.bash}
