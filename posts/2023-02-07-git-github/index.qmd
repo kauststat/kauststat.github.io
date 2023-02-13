@@ -318,7 +318,7 @@ git push -u origin main
 
 # RStudio + Git & GitHub
 
-> As per [this thread](https://github.com/rstudio/rstudio/issues/11693), it seems there is an issue with RStudio and SSH authentication for connecting to GitHub. As per today's date (Feb. 13, 2023) on `macOS 12.5.1` and `RStudio Version 2023.03.0-daily+316 (2023.03.0-daily+316)`, I could not make it work. However, as a workaround, **we can always use the terminal**, as we did so far.
+<!-- > As per [this thread](https://github.com/rstudio/rstudio/issues/11693), it seems there is an issue with RStudio and SSH authentication for connecting to GitHub. As per today's date (Feb. 13, 2023) on `macOS 12.5.1` and `RStudio Version 2023.03.0-daily+316 (2023.03.0-daily+316)`, I could not make it work. However, as a workaround, **we can always use the terminal**, as we did so far. -->
 
 The "RStudio + Git & GitHub" integration is simple once you know all the previous steps. However, in this case, when creating a new project, we will do it a different order (although many other options are possible); that is, we will
 
@@ -373,8 +373,8 @@ git@github.com:username/repository.git
 
 Then, it suffices to run the following commands (to do this inside RStudio, you can open the terminal going to `Tools` → `Terminal` → `Move Focus to Terminal`; it must be already set to the project folder)
 ```{.bash}
-git init
 git remote add origin git@github.com:user/user.github.io.git
 ```
 
-From this point on, you can do the same procedures we did in the previous sections. 
+From this point on, you can do the same procedures we did in the previous sections. However, when I tried, the ``Pull`` and ``Push`` buttons remained disabled until I did a first manual (using the terminal) `git push -u origin main`. If the same happens to you, do the first steps (moving files to the staging area, committing the changes, etc.) using the RStudio GUI, and execute the first `push` command on the terminal (as before).
+ 

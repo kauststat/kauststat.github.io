@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -460,9 +460,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="rstudio-git-github" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> RStudio + Git &amp; GitHub</h1>
-<blockquote class="blockquote">
-<p>As per <a href="https://github.com/rstudio/rstudio/issues/11693">this thread</a>, it seems there is an issue with RStudio and SSH authentication for connecting to GitHub. As per today’s date (Feb.&nbsp;13, 2023) on <code>macOS 12.5.1</code> and <code>RStudio Version 2023.03.0-daily+316 (2023.03.0-daily+316)</code>, I could not make it work. However, as a workaround, <strong>we can always use the terminal</strong>, as we did so far.</p>
-</blockquote>
+<!-- > As per [this thread](https://github.com/rstudio/rstudio/issues/11693), it seems there is an issue with RStudio and SSH authentication for connecting to GitHub. As per today's date (Feb. 13, 2023) on `macOS 12.5.1` and `RStudio Version 2023.03.0-daily+316 (2023.03.0-daily+316)`, I could not make it work. However, as a workaround, **we can always use the terminal**, as we did so far. -->
 <p>The “RStudio + Git &amp; GitHub” integration is simple once you know all the previous steps. However, in this case, when creating a new project, we will do it a different order (although many other options are possible); that is, we will</p>
 <ol type="1">
 <li>First, create a GitHub repository.</li>
@@ -496,9 +494,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>However, after creating the project we still have to connect it to your GitHub repository. To do this, <a href="https://github.com/new">create a new repository <strong>on Github</strong></a> (as we have already done before), and copy your repository address (after selecting the SSH protocol). Again, it will look like</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">git@github.com:username/repository.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then, it suffices to run the following commands (to do this inside RStudio, you can open the terminal going to <code>Tools</code> → <code>Terminal</code> → <code>Move Focus to Terminal</code>; it must be already set to the project folder)</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:user/user.github.io.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>From this point on, you can do the same procedures we did in the previous sections.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:user/user.github.io.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From this point on, you can do the same procedures we did in the previous sections. However, when I tried, the <code>Pull</code> and <code>Push</code> buttons remained disabled until I did a first manual (using the terminal) <code>git push -u origin main</code>. If the same happens to you, do the first steps (moving files to the staging area, committing the changes, etc.) using the RStudio GUI, and execute the first <code>push</code> command on the terminal (as before).</p>
 
 
 </section>
