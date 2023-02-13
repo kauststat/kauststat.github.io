@@ -245,6 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#creating-a-github-repository" id="toc-creating-a-github-repository" class="nav-link" data-scroll-target="#creating-a-github-repository"><span class="toc-section-number">5.1</span>  Creating a GitHub repository</a></li>
   <li><a href="#linking-your-repository-to-rstudio" id="toc-linking-your-repository-to-rstudio" class="nav-link" data-scroll-target="#linking-your-repository-to-rstudio"><span class="toc-section-number">5.2</span>  Linking your repository to RStudio</a></li>
+  <li><a href="#pushing-a-local-rstudio-project" id="toc-pushing-a-local-rstudio-project" class="nav-link" data-scroll-target="#pushing-a-local-rstudio-project"><span class="toc-section-number">5.3</span>  Pushing a local RStudio project</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -486,6 +487,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/gitcommit.png" class="img-fluid"></p>
 <p>From the above image, notice that we can do everything we did manually before, namely, moving items to the <code>Staging area</code> (check the desired boxes under the <code>Staged</code> menu), committing changes, pushing our new files to GitHub (with the <code>Push</code> button on the top right), etc. Here, we can also see the modified files; in this example, a new line has been added to the <code>main.R</code> file.</p>
 <p>Finally, when working with more people, it is a good practice to <code>pull</code> changes from the GitHub repository into your local project before pushing your modified files. This prevents conflicts among versions.</p>
+</section>
+<section id="pushing-a-local-rstudio-project" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="pushing-a-local-rstudio-project"><span class="header-section-number">5.3</span> Pushing a local RStudio project</h2>
+<p>Although I said it is more common to first create a GitHub repository and then link it to the RStudio, we can also do things in the opposite order. To do this, start by creating a new RStudio project, that is, go to <code>File</code> → <code>New Project</code> → <code>New Directory</code> → <code>New Project</code> and fill the <code>Directory name</code> field with your project name. <strong>Do not forget to check the <code>Create a git repository</code> box</strong>. And finally, click on the <code>Create Project</code> button.</p>
+<p>You will end up with a window that looks like the below image.</p>
+<p><img src="images/newproject.png" class="img-fluid"></p>
+<p>However, after creating the project we still have to connect it to your GitHub repository. To do this, <a href="https://github.com/new">create a new repository <strong>on Github</strong></a> (as we have already done before), and copy your repository address (after selecting the SSH protocol). Again, it will look like</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">git@github.com:username/repository.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, it suffices to run the following commands (to do this inside RStudio, you can open the terminal going to <code>Tools</code> → <code>Terminal</code> → <code>Move Focus to Terminal</code>; it must be already set to the project folder)</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:user/user.github.io.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From this point on, you can do the same procedures we did in the previous sections.</p>
 
 
 </section>
