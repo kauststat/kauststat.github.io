@@ -1,0 +1,9 @@
+---
+title: "KAUST STAT Blog"
+listing: 
+  contents: posts # All Quarto docs in the `posts` directory will be included on your listing page
+  type: default # Or `default` or `table`; each type has its own set of yaml options to include
+  sort: "date desc" # Can also sort on more than one field
+  categories: true # Allows you to sort posts by assigned categories 
+  page-size: 12 # Pagination for posts
+---

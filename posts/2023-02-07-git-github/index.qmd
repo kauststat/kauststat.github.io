@@ -1,0 +1,359 @@
+---
+title: "How to promote your research and yourself with `Git` and `GitHub`"
+description: "As a researcher, sharing your results is crucial if you want them to be useful. One way to do this is using `Git` for version control and `GitHub` as a public repository. In this tutorial, we will learn how to use these tools."
+number-sections: true  
+author:
+  - name: André Victor Ribeiro Amaral
+    url: https://www.avramaral.com/
+    orcid: 0000-0003-3748-6801
+    affiliation: King Abdullah University of Science and Techonology
+    affiliation-url: https://cemse.kaust.edu.sa/stat
+date: 2023-02-07
+categories: [Tutorial, Git, GitHub] 
+citation: 
+  url: https://kauststat.github.io/posts/2023-02-07-git-github/ 
+image: images/preview.jpg
+draft: false 
+execute:
+  eval: false
+---
+
+# Introduction
+
+`Git` is a **distributed version control system** software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively writing source code during software development. On the other hand, `GitHub` is a cloud platform for software development and **version control** using Git (adapted from [here](https://en.wikipedia.org/wiki/Git) and [here](https://en.wikipedia.org/wiki/GitHub)).
+
+## Preliminaries
+
+Firstly, I will assume `macOS` as the Operating System (OS) for this tutorial. Some instructions (in particular, @sec-SSHsettings) will be OS dependent. For a broader discussion on how to set SSH keys on other platforms, you may refer to [this tutorial](https://happygitwithr.com/ssh-keys.html).
+
+Also, specially for the first part of this tutorial, we will do the commands manually. To do this, we will use the terminal from `macOS` (the same applies to the terminal from Linux distributions; and for Windows users, refer to [this link](https://gitforwindows.org/)). 
+
+To access the terminal, on the `macOS`, press `Command + space bar`, and type `terminal`. The below image shows what the terminal looks like.
+
+![](images/terminal.png)
+
+Many things can be done using the terminal, but for this tutorial we will focus on a specific set of instructions. In particular, other that the Git specific commands, we will use
+
+- `cd`: change directory
+- `mkdir`: create a directory
+- `ls`: list files (`ls -a`: also list hidden files)
+- `touch`: create a file
+- `open`: open a file
+- `nano`: edit a file using the `nano` text editor
+
+## Installation
+
+To download and install `Git`, refer to [https://git-scm.com/downloads](https://git-scm.com/downloads) (or [https://github.com/git-guides/install-git](https://github.com/git-guides/install-git)). And to verify if `Git` was successfully installed, type `git --version` on the terminal.
+
+To create a GitHub account, go to [https://github.com/](https://github.com/), click on `Sign Up`, and follow the instructions.
+
+# General Procedure 
+
+As an overview, first, we must navigate to the project folder on the terminal using the `cd` command, so that we can create a local repository using the `git init` command. Then, the following steps are represented in the image below (this diagram was inspired by [this video](https://www.youtube.com/watch?v=3fUbBnN_H2c)).
+
+![](images/general_idea.png)
+
+This means that we can use the `git add`, `git commit`, `git push`, and `git clone` commands to move files along compartments. Also, notice that the changes are tracked and saved in the **Commit history**.
+
+# First steps
+
+After installing `Git`, it is important to set an username and your email address (the same as from your GitHub account). To do this, on the terminal
+```{.bash}
+git config --global user.name 'username'
+git config --global user.email 'email@email.com'
+```
+Replacing `'username'` and `'email@email.com'` by the appropriate values.
+
+And to check the values, one can use the following commands
+```{.bash}
+git config user.name
+git config user.email
+```
+
+Although the next step is not mandatory, it is a good practice to change the name of the main branch from `master` to `main`, (for consistency with GitHub guidelines). We can do this using the following command
+```{.bash}
+git config --global init.defaultBranch main
+```
+
+## Creating your first repository
+
+Let's create our first repository. To do this, on the terminal (if on Windows, the `cmd`), navigate to your `Desktop` directory, and create a new folder named `GitTutorial`. Depending on your directories structure, you can do this in the following way
+```{.bash}
+cd ~/Desktop/
+mkdir GitTutorial
+cd GitTutorial
+```
+
+Finally, to create/initialize a repository, use the `git init` command. That is,
+```{.bash}
+git init
+```
+
+To make sure that a repository was created, you can look for the `.git` folder by typing the `ls -a` command. On the other hand, if you want to delete the `.git` folder (and therefore, the repository settings), you can type `rm -rf .git`.
+
+## Moving files to the Staging area
+
+Now, let’s create some non-significant files on `/GitTutorial/`, so that we can see how to work with them. You can do this by typing `touch file1.R file2.R` (or you can create them manually). For this situation, we would have the following files structure
+
+```{.bash}
+Desktop/
+└── GitTutorial/
+    ├── .git/
+    ├── file1.R
+    └── file2.R
+```
+
+To see these files' status, you can use the `git status` command.
+
+Also, you can send a file (e.g., `file1.R`) to the **Staging area** with the `git add file1.R` command (to send all files at once, use `git add .`).
+
+After doing this, run `git status` again.
+
+You can remove a file (e.g., `file1.R`) from the **Staging area** with the `git rm --cached file1.R` command. After doing this, run the `git status` command one more time. 
+
+Before going to the next subsection send all files to the **Staging area** with
+```{.bash}
+git add .
+```
+
+## Creating commits
+
+A **commit** can be seen as a *safe point*. Meaning that you can always refer back to them, if needed. To create a commit (based on the **Staging area**), use the following command
+```{.bash}
+git commit -m 'meaningful but short message'
+```
+
+For example, you can start your list of commits with the following command
+```{.bash}
+git commit -m 'initial commit'
+```
+
+You can check the status of your repository using the `git status` command. Also, to see the log of commits, use the `git log` command.
+
+Now, modify `file1.R` and do all steps again. In particular, use the following commands
+```{.bash}
+nano file1.R # to modify the file1.R
+git status
+git add .
+git status
+git commit -m 'modify file1'
+git status
+git log
+```
+
+To go back in time and revert your project to one of your safe points (i.e., to one of your previous commits), you can use the following commands
+```{.bash}
+git log # and copy the commit key; e.g., 42037c4bf5c1fe189a62632b393f6971979d8bf4
+git revert --no-commit 42037c4bf5c1fe189a62632b393f6971979d8bf4..HEAD
+git commit -m 'back to old version X'
+```
+
+Notice that there are different ways to do this (getting back to a point in the past), but **never** delete your history of commits. After all, that is the main reason why you should use Git: **for tracking your changes**.
+
+If you want to visit older commits, use the `git checkout (commit key)` command. To come back, use the `git switch -` command.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Pushing files to GitHub
+
+Assuming you already have a GitHub account (if not, you can click [here](https://github.com/) to create one), we can [create a new repository **on Github**](https://github.com/new).
+
+![](images/new_repository.png)
+
+Now, since we want to “push an existing repository from the command line” (for example, the repository we have just created in `/GitTutorial/`), all we need to do is
+```{.bash}
+git remote add origin git@github.com:user/repository.git
+git branch -M main 
+git push -u origin main
+```
+
+However, there are a few important comments to be made.
+
+1. In the first line, notice that `user` and `repository.git` have to be replaced by the appropriate values.
+2. Recently, the default name of the main branch was modified from `master` to `main`, as in the second line. You can use the `git branch` command to verify the current name. Also, the second line may not be necessary if you already re-define your standard main branch name.
+3. Using the `git push` command right away will likely lead to an error due to authentication issues. We will fix it now.
+
+### SSH settings {#sec-SSHsettings}
+
+Since it is no longer possible to connect to GitHub using just your username and password, we have to set a SSH (Secure Shell, which is a cryptographic network protocol) key.
+
+To do this, based on [this guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent), do the following.
+
+1. On the terminal, enter the following command (replacing `email@email.com` by your email address).
+```{.bash}
+ssh-keygen -t ed25519 -C 'email@email.com'
+```
+The above command will create a new SSH key using your email address as a label. As a remark, you can accept the default file location and create an empty password.
+
+2. Now, you will add your SSH key to the ssh-agent. To do this, use the following command
+```{.bash}
+eval "$(ssh-agent -s)"
+```
+3. The next step is to modify your `~/.ssh/config` file to automatically load keys into the ssh-agent. This can be done by using the following command 
+```{.bash}
+open ~/.ssh/config
+```
+However, if such a file does not exist, it may be necessary to create it with
+```{.bash}
+touch ~/.ssh/config
+```
+Finally, after opening your `~/.ssh/config` file, you can modify it by pasting the following lines
+```{.bash}
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+```
+As a remark, if you chose not to add a password to your key, **you should omit** the `UseKeychain yes` line.
+
+4. Now you can add your SSH private key to the ssh-agent with
+```{.bash}
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+5. The final step is adding the newly created SSH key to your GitHub account. To do this, based on [this guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account), copy the SSH public key to your clipboard with the following command
+```{.bash}
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+Now, on your GitHub profile, go to `Settings` → `SSH and GPC keys` and click on the `New SSH key` button.
+
+On the new `SSH keys / Add new` page, paste your SSH public key into the `Key` field, and click on the `Add SSH key` button.
+
+As a final comment, and as discussed in [this thread](https://gist.github.com/developius/c81f021eb5c5916013dc), if you try to use the `git push -u origin main` command and it still does not work (recall that we are using the SSH protocol, as opposed to the HTTPS protocol), you may have to run the following lines
+```{.bash}
+git config --get remote.origin.url # to check the remote URL
+git remote set-url origin git@github.com:user/repository.git
+```
+
+Then, you can push your files to GitHub.
+```{.bash}
+git push -u origin main
+```
+
+### Creating a README file
+
+Since we did not create a `README.md` file, we can do it now. On the terminal, assuming the correct directory,
+```{.bash}
+touch README.md
+nano README.md
+```
+The second line allows you to edit the file using the `nano` text editor. Alternatively, you can use any other software to do this. Also, you can use the `markdown` language to format this document.
+
+Next, let's do the necessary steps to push this new change to our GitHub repository; that is,
+```{.bash}
+git add README.md
+git commit -m 'add readme file'
+git push origin main
+```
+
+After doing this, check you repository page on GitHub!
+
+## Pulling files from another repository
+
+Now, suppose that you have to retrieve files from an existing repository. You can do this using the `clone` and `pull` commands. To do this, 
+
+1. On GitHub, navigate to the desired repository (e.g., [this one](https://github.com/avramaral/blog_demo)), go to `Code` → `SSH`, and copy the address (e.g., `git@github.com:username/repository.git`).
+2. On the terminal, navigate to the desired folder using the `cd` command, and type
+```{.bash}
+git clone git@github.com:username/repository.git
+```
+
+If the repository got updated and you want to incorporate these changes, you can use the `git pull` command. To check the linked remote branches, you may use `git remote -v`; and if there are more than one, it may be necessary to specify it through the more complete (for example) `git pull origin` command. After getting a copy (of a repository that you own), **all other commands can be applied**.
+
+# Creating a page with GitHub pages
+
+Using the [GitHub Pages](https://pages.github.com/), it is possible to create a free web page with unique domain. For this tutorial session, we will use an [already created template](https://avramaral.github.io/blog_demo/), as in the image below.
+
+![](images/webpage.png)
+
+To do this, take the following steps.
+
+1. Using the terminal, navigate to the desired folder, and clone [this repository](https://github.com/avramaral/blog_demo).
+```{.bash}
+git clone git@github.com:avramaral/blog_demo.git
+```
+2. Modify the files in whatever way you want. Notice that this is a very simple static page with a single `.html` file. Much more complex static websites can be created. For instance, people use [Quarto](https://quarto.org/) (as an alternative to `RMarkdown`) to create a static website that also renders `R` code. 
+3. (**Optional**). As you do not own this repository, and you are using the corresponding files just to initialize your project, I suggest you not to keep the previous `.git/*` files, and start from scratch. To do this, you can simple delete the `.git/` folder as follows (provided you are already on the correct path)
+```{.bash}
+rm -rf .git
+```
+4. To use it as your main page, it is **crucial** to create a GitHub repository named `username.github.io`, such that the `username` is replaced by the appropriate value.
+5. After doing this, you can follow all the previously mentioned steps. That is, once in the correct folder,
+```{.bash}
+git init
+git add .
+git commit -m 'initial commit'
+git remote add origin git@github.com:user/user.github.io.git
+git branch -M main # Optional!
+git push -u origin main
+```
+6. Then go to `Settings` → `Pages` and set it as below (it might be necessary to update `/(root)` to `/docs`, depending on where your `index.html` file is located).
+
+![](images/githubpages.png)
+
+7. (**Optional**). As in [this thread](https://stackoverflow.com/questions/11577147/how-to-fix-http-404-on-github-pages), if you are facing a `HTTP 404` on GitHub Pages when everything looks correct, you may have to push an empty commit to make it work. You can do this in the following way
+```{.bash}
+git commit --allow-empty -m 'Site rebuild'
+git push -u origin main
+```
+
+# RStudio + Git & GitHub
+
+> As per [this thread](https://github.com/rstudio/rstudio/issues/11693), it seems there is an issue with RStudio and SSH authentication for connecting to GitHub. As per today's date (Feb. 13, 2023) on `macOS 12.5.1` and `RStudio Version 2023.03.0-daily+316 (2023.03.0-daily+316)`, I could not make it work. However, as a workaround, **we can always use the terminal**, as we did so far.
+
+The "RStudio + Git & GitHub" integration is simple once you know all the previous steps. However, in this case, when creating a new project, we will do it a different order (although many other options are possible); that is, we will
+
+1. First, create a GitHub repository.
+2. Second, create a local RStudio project that will be linked to this GitHub repository.
+
+## Creating a GitHub repository
+
+As showed before, [create a new repository **on Github**](https://github.com/new). After selecting the SSH protocol, copy your repository address. It will look like
+```{.bash}
+git@github.com:username/repository.git
+```
+
+## Linking your repository to RStudio
+
+Firstly, let's make sure that RStudio can identify the Git installation (this is automatically done in most cases). To do this, go to `Tools` → `Global Options` → `Git/SVN` and check if the `Git executable` has the appropriate Git path; if not, [this page](https://support.rstudio.com/hc/en-us/articles/200532077?version=1.4.1717&mode=desktop) may help. 
+
+Your settings have to be similar to those shown in the following image. Also, even if you have set your SSH key before, it might not appear in the `SSH RSA key` field. [Here](https://happygitwithr.com/ssh-keys.html#from-rstudio) is an explanation of why this may happen. 
+
+![](images/RStudiosettings.png){width=70%}
+
+In RStudio, go to `File` → `New Project` → `Version Control` → `Git`, and paste your repository address (from GitHub) on the `Repository URL` field. The `Project directory name` will be auto completed. You also have to set the `Create project as subdirectory of:` option accordingly. 
+
+The below image shows you how the spaces should be filled. After doing it, click on the `Create Project` button.
+
+![](images/gitRStudio.png){width=70%}
+
+Once you have created your project and linked it to the `RStudio`, a Git icon will appear on the top menu, as in the right side of this image.
+
+![](images/giticon.png)
+
+If you click on it, and go to the `Commit...` option (on macOS, you can use the `control + option + M` shortcut), you will see the following window.
+
+![](images/gitcommit.png)
+
+From the above image, notice that we can do everything we did manually before, namely, moving items to the `Staging area` (check the desired boxes under the `Staged` menu), committing changes, pushing our new files to GitHub (with the `Push` button on the top right), etc. Here, we can also see the modified files; in this example, a new line has been added to the `main.R` file.
+
+Finally, when working with more people, it is a good practice to `pull` changes from the GitHub repository into your local project before pushing your modified files. This prevents conflicts among versions.

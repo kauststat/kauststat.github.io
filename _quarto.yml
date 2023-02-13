@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "KAUST STAT"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: posts.qmd
+        text: Blog
+    right:
+      - href: https://github.com/kauststat/
+        icon: "github"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+

@@ -1,0 +1,20 @@
+---
+title: "KAUST STAT"
+image: images/KAUST_STAT.png
+about: 
+  template: solana
+  image-width: 20em
+  links:
+    - text: Website
+      href: https://cemse.kaust.edu.sa/stat
+    - text: Twitter
+      href: https://twitter.com/KAUST_News
+    - text: GitHub
+      href: https://github.com/kauststat/
+---
+
+
+> King Abdullah University of Science and Technology (KAUST) is a private research university located in Thuwal, Saudi Arabia. Founded in 2009, the university provides research and graduate training programs in English as the official language of instruction. KAUST is the first mixed-gender university campus in Saudi Arabia. ([Wikipedia](https://en.wikipedia.org/wiki/King_Abdullah_University_of_Science_and_Technology), 2023).
+
+
+This is KAUST STAT website. Here, you will find [our blog](./posts.html) and other material produced by the students in our department. 

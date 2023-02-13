@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="André Victor Ribeiro Amaral">
+<meta name="dcterms.date" content="2023-02-07">
+<meta name="description" content="As a researcher, sharing your results is crucial if you want them to be useful. One way to do this is using Git for version control and GitHub as a public repository. In this tutorial, we will learn how to use these tools.">
+
+<title>KAUST STAT - How to promote your research and yourself with Git and GitHub</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">KAUST STAT</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kauststat/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">How to promote your research and yourself with <code>Git</code> and <code>GitHub</code></h1>
+                  <div>
+        <div class="description">
+          As a researcher, sharing your results is crucial if you want them to be useful. One way to do this is using <code>Git</code> for version control and <code>GitHub</code> as a public repository. In this tutorial, we will learn how to use these tools.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Tutorial</div>
+                <div class="quarto-category">Git</div>
+                <div class="quarto-category">GitHub</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <a href="https://www.avramaral.com/">André Victor Ribeiro Amaral</a> <a href="https://orcid.org/0000-0003-3748-6801" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://cemse.kaust.edu.sa/stat">
+              King Abdullah University of Science and Techonology
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 7, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">1</span>  Introduction</a>
+  <ul class="collapse">
+  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link" data-scroll-target="#preliminaries"><span class="toc-section-number">1.1</span>  Preliminaries</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="toc-section-number">1.2</span>  Installation</a></li>
+  </ul></li>
+  <li><a href="#general-procedure" id="toc-general-procedure" class="nav-link" data-scroll-target="#general-procedure"><span class="toc-section-number">2</span>  General Procedure</a></li>
+  <li><a href="#first-steps" id="toc-first-steps" class="nav-link" data-scroll-target="#first-steps"><span class="toc-section-number">3</span>  First steps</a>
+  <ul class="collapse">
+  <li><a href="#creating-your-first-repository" id="toc-creating-your-first-repository" class="nav-link" data-scroll-target="#creating-your-first-repository"><span class="toc-section-number">3.1</span>  Creating your first repository</a></li>
+  <li><a href="#moving-files-to-the-staging-area" id="toc-moving-files-to-the-staging-area" class="nav-link" data-scroll-target="#moving-files-to-the-staging-area"><span class="toc-section-number">3.2</span>  Moving files to the Staging area</a></li>
+  <li><a href="#creating-commits" id="toc-creating-commits" class="nav-link" data-scroll-target="#creating-commits"><span class="toc-section-number">3.3</span>  Creating commits</a></li>
+  <li><a href="#pushing-files-to-github" id="toc-pushing-files-to-github" class="nav-link" data-scroll-target="#pushing-files-to-github"><span class="toc-section-number">3.4</span>  Pushing files to GitHub</a>
+  <ul class="collapse">
+  <li><a href="#sec-SSHsettings" id="toc-sec-SSHsettings" class="nav-link" data-scroll-target="#sec-SSHsettings"><span class="toc-section-number">3.4.1</span>  SSH settings</a></li>
+  <li><a href="#creating-a-readme-file" id="toc-creating-a-readme-file" class="nav-link" data-scroll-target="#creating-a-readme-file"><span class="toc-section-number">3.4.2</span>  Creating a README file</a></li>
+  </ul></li>
+  <li><a href="#pulling-files-from-another-repository" id="toc-pulling-files-from-another-repository" class="nav-link" data-scroll-target="#pulling-files-from-another-repository"><span class="toc-section-number">3.5</span>  Pulling files from another repository</a></li>
+  </ul></li>
+  <li><a href="#creating-a-page-with-github-pages" id="toc-creating-a-page-with-github-pages" class="nav-link" data-scroll-target="#creating-a-page-with-github-pages"><span class="toc-section-number">4</span>  Creating a page with GitHub pages</a></li>
+  <li><a href="#rstudio-git-github" id="toc-rstudio-git-github" class="nav-link" data-scroll-target="#rstudio-git-github"><span class="toc-section-number">5</span>  RStudio + Git &amp; GitHub</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-github-repository" id="toc-creating-a-github-repository" class="nav-link" data-scroll-target="#creating-a-github-repository"><span class="toc-section-number">5.1</span>  Creating a GitHub repository</a></li>
+  <li><a href="#linking-your-repository-to-rstudio" id="toc-linking-your-repository-to-rstudio" class="nav-link" data-scroll-target="#linking-your-repository-to-rstudio"><span class="toc-section-number">5.2</span>  Linking your repository to RStudio</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p><code>Git</code> is a <strong>distributed version control system</strong> software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively writing source code during software development. On the other hand, <code>GitHub</code> is a cloud platform for software development and <strong>version control</strong> using Git (adapted from <a href="https://en.wikipedia.org/wiki/Git">here</a> and <a href="https://en.wikipedia.org/wiki/GitHub">here</a>).</p>
+<section id="preliminaries" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="preliminaries"><span class="header-section-number">1.1</span> Preliminaries</h2>
+<p>Firstly, I will assume <code>macOS</code> as the Operating System (OS) for this tutorial. Some instructions (in particular, <a href="#sec-SSHsettings">Section&nbsp;3.4.1</a>) will be OS dependent. For a broader discussion on how to set SSH keys on other platforms, you may refer to <a href="https://happygitwithr.com/ssh-keys.html">this tutorial</a>.</p>
+<p>Also, specially for the first part of this tutorial, we will do the commands manually. To do this, we will use the terminal from <code>macOS</code> (the same applies to the terminal from Linux distributions; and for Windows users, refer to <a href="https://gitforwindows.org/">this link</a>).</p>
+<p>To access the terminal, on the <code>macOS</code>, press <code>Command + space bar</code>, and type <code>terminal</code>. The below image shows what the terminal looks like.</p>
+<p><img src="images/terminal.png" class="img-fluid"></p>
+<p>Many things can be done using the terminal, but for this tutorial we will focus on a specific set of instructions. In particular, other that the Git specific commands, we will use</p>
+<ul>
+<li><code>cd</code>: change directory</li>
+<li><code>mkdir</code>: create a directory</li>
+<li><code>ls</code>: list files (<code>ls -a</code>: also list hidden files)</li>
+<li><code>touch</code>: create a file</li>
+<li><code>open</code>: open a file</li>
+<li><code>nano</code>: edit a file using the <code>nano</code> text editor</li>
+</ul>
+</section>
+<section id="installation" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.2</span> Installation</h2>
+<p>To download and install <code>Git</code>, refer to <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a> (or <a href="https://github.com/git-guides/install-git">https://github.com/git-guides/install-git</a>). And to verify if <code>Git</code> was successfully installed, type <code>git --version</code> on the terminal.</p>
+<p>To create a GitHub account, go to <a href="https://github.com/">https://github.com/</a>, click on <code>Sign Up</code>, and follow the instructions.</p>
+</section>
+</section>
+<section id="general-procedure" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> General Procedure</h1>
+<p>As an overview, first, we must navigate to the project folder on the terminal using the <code>cd</code> command, so that we can create a local repository using the <code>git init</code> command. Then, the following steps are represented in the image below (this diagram was inspired by <a href="https://www.youtube.com/watch?v=3fUbBnN_H2c">this video</a>).</p>
+<p><img src="images/general_idea.png" class="img-fluid"></p>
+<p>This means that we can use the <code>git add</code>, <code>git commit</code>, <code>git push</code>, and <code>git clone</code> commands to move files along compartments. Also, notice that the changes are tracked and saved in the <strong>Commit history</strong>.</p>
+</section>
+<section id="first-steps" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> First steps</h1>
+<p>After installing <code>Git</code>, it is important to set an username and your email address (the same as from your GitHub account). To do this, on the terminal</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">'username'</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">'email@email.com'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Replacing <code>'username'</code> and <code>'email@email.com'</code> by the appropriate values.</p>
+<p>And to check the values, one can use the following commands</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config user.name</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config user.email</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Although the next step is not mandatory, it is a good practice to change the name of the main branch from <code>master</code> to <code>main</code>, (for consistency with GitHub guidelines). We can do this using the following command</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> init.defaultBranch main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="creating-your-first-repository" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="creating-your-first-repository"><span class="header-section-number">3.1</span> Creating your first repository</h2>
+<p>Let’s create our first repository. To do this, on the terminal (if on Windows, the <code>cmd</code>), navigate to your <code>Desktop</code> directory, and create a new folder named <code>GitTutorial</code>. Depending on your directories structure, you can do this in the following way</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop/</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> GitTutorial</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> GitTutorial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, to create/initialize a repository, use the <code>git init</code> command. That is,</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To make sure that a repository was created, you can look for the <code>.git</code> folder by typing the <code>ls -a</code> command. On the other hand, if you want to delete the <code>.git</code> folder (and therefore, the repository settings), you can type <code>rm -rf .git</code>.</p>
+</section>
+<section id="moving-files-to-the-staging-area" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="moving-files-to-the-staging-area"><span class="header-section-number">3.2</span> Moving files to the Staging area</h2>
+<p>Now, let’s create some non-significant files on <code>/GitTutorial/</code>, so that we can see how to work with them. You can do this by typing <code>touch file1.R file2.R</code> (or you can create them manually). For this situation, we would have the following files structure</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Desktop/</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> GitTutorial/</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> .git/</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> file1.R</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> file2.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To see these files’ status, you can use the <code>git status</code> command.</p>
+<p>Also, you can send a file (e.g., <code>file1.R</code>) to the <strong>Staging area</strong> with the <code>git add file1.R</code> command (to send all files at once, use <code>git add .</code>).</p>
+<p>After doing this, run <code>git status</code> again.</p>
+<p>You can remove a file (e.g., <code>file1.R</code>) from the <strong>Staging area</strong> with the <code>git rm --cached file1.R</code> command. After doing this, run the <code>git status</code> command one more time.</p>
+<p>Before going to the next subsection send all files to the <strong>Staging area</strong> with</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="creating-commits" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="creating-commits"><span class="header-section-number">3.3</span> Creating commits</h2>
+<p>A <strong>commit</strong> can be seen as a <em>safe point</em>. Meaning that you can always refer back to them, if needed. To create a commit (based on the <strong>Staging area</strong>), use the following command</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'meaningful but short message'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example, you can start your list of commits with the following command</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'initial commit'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can check the status of your repository using the <code>git status</code> command. Also, to see the log of commits, use the <code>git log</code> command.</p>
+<p>Now, modify <code>file1.R</code> and do all steps again. In particular, use the following commands</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> file1.R <span class="co"># to modify the file1.R</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'modify file1'</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To go back in time and revert your project to one of your safe points (i.e., to one of your previous commits), you can use the following commands</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="co"># and copy the commit key; e.g., 42037c4bf5c1fe189a62632b393f6971979d8bf4</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert <span class="at">--no-commit</span> 42037c4bf5c1fe189a62632b393f6971979d8bf4..HEAD</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'back to old version X'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that there are different ways to do this (getting back to a point in the past), but <strong>never</strong> delete your history of commits. After all, that is the main reason why you should use Git: <strong>for tracking your changes</strong>.</p>
+<p>If you want to visit older commits, use the <code>git checkout (commit key)</code> command. To come back, use the <code>git switch -</code> command.</p>
+</section>
+<section id="pushing-files-to-github" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="pushing-files-to-github"><span class="header-section-number">3.4</span> Pushing files to GitHub</h2>
+<p>Assuming you already have a GitHub account (if not, you can click <a href="https://github.com/">here</a> to create one), we can <a href="https://github.com/new">create a new repository <strong>on Github</strong></a>.</p>
+<p><img src="images/new_repository.png" class="img-fluid"></p>
+<p>Now, since we want to “push an existing repository from the command line” (for example, the repository we have just created in <code>/GitTutorial/</code>), all we need to do is</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:user/repository.git</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, there are a few important comments to be made.</p>
+<ol type="1">
+<li>In the first line, notice that <code>user</code> and <code>repository.git</code> have to be replaced by the appropriate values.</li>
+<li>Recently, the default name of the main branch was modified from <code>master</code> to <code>main</code>, as in the second line. You can use the <code>git branch</code> command to verify the current name. Also, the second line may not be necessary if you already re-define your standard main branch name.</li>
+<li>Using the <code>git push</code> command right away will likely lead to an error due to authentication issues. We will fix it now.</li>
+</ol>
+<section id="sec-SSHsettings" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="sec-SSHsettings"><span class="header-section-number">3.4.1</span> SSH settings</h3>
+<p>Since it is no longer possible to connect to GitHub using just your username and password, we have to set a SSH (Secure Shell, which is a cryptographic network protocol) key.</p>
+<p>To do this, based on <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">this guide</a>, do the following.</p>
+<ol type="1">
+<li>On the terminal, enter the following command (replacing <code>email@email.com</code> by your email address).</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">'email@email.com'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The above command will create a new SSH key using your email address as a label. As a remark, you can accept the default file location and create an empty password.</p>
+<ol start="2" type="1">
+<li>Now, you will add your SSH key to the ssh-agent. To do this, use the following command</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>The next step is to modify your <code>~/.ssh/config</code> file to automatically load keys into the ssh-agent. This can be done by using the following command</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">open</span> ~/.ssh/config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, if such a file does not exist, it may be necessary to create it with</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> ~/.ssh/config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, after opening your <code>~/.ssh/config</code> file, you can modify it by pasting the following lines</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Host</span> github.com</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">AddKeysToAgent</span> yes</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">UseKeychain</span> yes</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">IdentityFile</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As a remark, if you chose not to add a password to your key, <strong>you should omit</strong> the <code>UseKeychain yes</code> line.</p>
+<ol start="4" type="1">
+<li>Now you can add your SSH private key to the ssh-agent with</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> <span class="at">--apple-use-keychain</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>The final step is adding the newly created SSH key to your GitHub account. To do this, based on <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">this guide</a>, copy the SSH public key to your clipboard with the following command</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pbcopy</span> <span class="op">&lt;</span> ~/.ssh/id_ed25519.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, on your GitHub profile, go to <code>Settings</code> → <code>SSH and GPC keys</code> and click on the <code>New SSH key</code> button.</p>
+<p>On the new <code>SSH keys / Add new</code> page, paste your SSH public key into the <code>Key</code> field, and click on the <code>Add SSH key</code> button.</p>
+<p>As a final comment, and as discussed in <a href="https://gist.github.com/developius/c81f021eb5c5916013dc">this thread</a>, if you try to use the <code>git push -u origin main</code> command and it still does not work (recall that we are using the SSH protocol, as opposed to the HTTPS protocol), you may have to run the following lines</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--get</span> remote.origin.url <span class="co"># to check the remote URL</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:user/repository.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, you can push your files to GitHub.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="creating-a-readme-file" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="creating-a-readme-file"><span class="header-section-number">3.4.2</span> Creating a README file</h3>
+<p>Since we did not create a <code>README.md</code> file, we can do it now. On the terminal, assuming the correct directory,</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> README.md</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The second line allows you to edit the file using the <code>nano</code> text editor. Alternatively, you can use any other software to do this. Also, you can use the <code>markdown</code> language to format this document.</p>
+<p>Next, let’s do the necessary steps to push this new change to our GitHub repository; that is,</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'add readme file'</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After doing this, check you repository page on GitHub!</p>
+</section>
+</section>
+<section id="pulling-files-from-another-repository" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="pulling-files-from-another-repository"><span class="header-section-number">3.5</span> Pulling files from another repository</h2>
+<p>Now, suppose that you have to retrieve files from an existing repository. You can do this using the <code>clone</code> and <code>pull</code> commands. To do this,</p>
+<ol type="1">
+<li>On GitHub, navigate to the desired repository (e.g., <a href="https://github.com/avramaral/blog_demo">this one</a>), go to <code>Code</code> → <code>SSH</code>, and copy the address (e.g., <code>git@github.com:username/repository.git</code>).</li>
+<li>On the terminal, navigate to the desired folder using the <code>cd</code> command, and type</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:username/repository.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the repository got updated and you want to incorporate these changes, you can use the <code>git pull</code> command. To check the linked remote branches, you may use <code>git remote -v</code>; and if there are more than one, it may be necessary to specify it through the more complete (for example) <code>git pull origin</code> command. After getting a copy (of a repository that you own), <strong>all other commands can be applied</strong>.</p>
+</section>
+</section>
+<section id="creating-a-page-with-github-pages" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Creating a page with GitHub pages</h1>
+<p>Using the <a href="https://pages.github.com/">GitHub Pages</a>, it is possible to create a free web page with unique domain. For this tutorial session, we will use an <a href="https://avramaral.github.io/blog_demo/">already created template</a>, as in the image below.</p>
+<p><img src="images/webpage.png" class="img-fluid"></p>
+<p>To do this, take the following steps.</p>
+<ol type="1">
+<li>Using the terminal, navigate to the desired folder, and clone <a href="https://github.com/avramaral/blog_demo">this repository</a>.</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:avramaral/blog_demo.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Modify the files in whatever way you want. Notice that this is a very simple static page with a single <code>.html</code> file. Much more complex static websites can be created. For instance, people use <a href="https://quarto.org/">Quarto</a> (as an alternative to <code>RMarkdown</code>) to create a static website that also renders <code>R</code> code.</li>
+<li>(<strong>Optional</strong>). As you do not own this repository, and you are using the corresponding files just to initialize your project, I suggest you not to keep the previous <code>.git/*</code> files, and start from scratch. To do this, you can simple delete the <code>.git/</code> folder as follows (provided you are already on the correct path)</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>To use it as your main page, it is <strong>crucial</strong> to create a GitHub repository named <code>username.github.io</code>, such that the <code>username</code> is replaced by the appropriate value.</li>
+<li>After doing this, you can follow all the previously mentioned steps. That is, once in the correct folder,</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'initial commit'</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:user/user.github.io.git</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main <span class="co"># Optional!</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>Then go to <code>Settings</code> → <code>Pages</code> and set it as below (it might be necessary to update <code>/(root)</code> to <code>/docs</code>, depending on where your <code>index.html</code> file is located).</li>
+</ol>
+<p><img src="images/githubpages.png" class="img-fluid"></p>
+<ol start="7" type="1">
+<li>(<strong>Optional</strong>). As in <a href="https://stackoverflow.com/questions/11577147/how-to-fix-http-404-on-github-pages">this thread</a>, if you are facing a <code>HTTP 404</code> on GitHub Pages when everything looks correct, you may have to push an empty commit to make it work. You can do this in the following way</li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">'Site rebuild'</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="rstudio-git-github" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> RStudio + Git &amp; GitHub</h1>
+<blockquote class="blockquote">
+<p>As per <a href="https://github.com/rstudio/rstudio/issues/11693">this thread</a>, it seems there is an issue with RStudio and SSH authentication for connecting to GitHub. As per today’s date (Feb.&nbsp;13, 2023) on <code>macOS 12.5.1</code> and <code>RStudio Version 2023.03.0-daily+316 (2023.03.0-daily+316)</code>, I could not make it work. However, as a workaround, <strong>we can always use the terminal</strong>, as we did so far.</p>
+</blockquote>
+<p>The “RStudio + Git &amp; GitHub” integration is simple once you know all the previous steps. However, in this case, when creating a new project, we will do it a different order (although many other options are possible); that is, we will</p>
+<ol type="1">
+<li>First, create a GitHub repository.</li>
+<li>Second, create a local RStudio project that will be linked to this GitHub repository.</li>
+</ol>
+<section id="creating-a-github-repository" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="creating-a-github-repository"><span class="header-section-number">5.1</span> Creating a GitHub repository</h2>
+<p>As showed before, <a href="https://github.com/new">create a new repository <strong>on Github</strong></a>. After selecting the SSH protocol, copy your repository address. It will look like</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">git@github.com:username/repository.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="linking-your-repository-to-rstudio" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="linking-your-repository-to-rstudio"><span class="header-section-number">5.2</span> Linking your repository to RStudio</h2>
+<p>Firstly, let’s make sure that RStudio can identify the Git installation (this is automatically done in most cases). To do this, go to <code>Tools</code> → <code>Global Options</code> → <code>Git/SVN</code> and check if the <code>Git executable</code> has the appropriate Git path; if not, <a href="https://support.rstudio.com/hc/en-us/articles/200532077?version=1.4.1717&amp;mode=desktop">this page</a> may help.</p>
+<p>Your settings have to be similar to those shown in the following image. Also, even if you have set your SSH key before, it might not appear in the <code>SSH RSA key</code> field. <a href="https://happygitwithr.com/ssh-keys.html#from-rstudio">Here</a> is an explanation of why this may happen.</p>
+<p><img src="images/RStudiosettings.png" class="img-fluid" style="width:70.0%"></p>
+<p>In RStudio, go to <code>File</code> → <code>New Project</code> → <code>Version Control</code> → <code>Git</code>, and paste your repository address (from GitHub) on the <code>Repository URL</code> field. The <code>Project directory name</code> will be auto completed. You also have to set the <code>Create project as subdirectory of:</code> option accordingly.</p>
+<p>The below image shows you how the spaces should be filled. After doing it, click on the <code>Create Project</code> button.</p>
+<p><img src="images/gitRStudio.png" class="img-fluid" style="width:70.0%"></p>
+<p>Once you have created your project and linked it to the <code>RStudio</code>, a Git icon will appear on the top menu, as in the right side of this image.</p>
+<p><img src="images/giticon.png" class="img-fluid"></p>
+<p>If you click on it, and go to the <code>Commit...</code> option (on macOS, you can use the <code>control + option + M</code> shortcut), you will see the following window.</p>
+<p><img src="images/gitcommit.png" class="img-fluid"></p>
+<p>From the above image, notice that we can do everything we did manually before, namely, moving items to the <code>Staging area</code> (check the desired boxes under the <code>Staged</code> menu), committing changes, pushing our new files to GitHub (with the <code>Push</code> button on the top right), etc. Here, we can also see the modified files; in this example, a new line has been added to the <code>main.R</code> file.</p>
+<p>Finally, when working with more people, it is a good practice to <code>pull</code> changes from the GitHub repository into your local project before pushing your modified files. This prevents conflicts among versions.</p>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{victorribeiroamaral2023,
+  author = {André Victor Ribeiro Amaral},
+  title = {How to Promote Your Research and Yourself with {`Git`} and
+    {`GitHub`}},
+  date = {2023-02-07},
+  url = {https://kauststat.github.io/posts/2023-02-07-git-github/},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-victorribeiroamaral2023" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+André Victor Ribeiro Amaral. 2023. <span>“How to Promote Your Research
+and Yourself with `Git` and `GitHub`.”</span> February 7, 2023. <a href="https://kauststat.github.io/posts/2023-02-07-git-github/">https://kauststat.github.io/posts/2023-02-07-git-github/</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
