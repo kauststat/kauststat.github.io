@@ -28,7 +28,7 @@ Firstly, I will assume `macOS` as the Operating System (OS) for this tutorial. S
 
 Also, specially for the first part of this tutorial, we will do the commands manually. To do this, we will use the terminal from `macOS` (the same applies to the terminal from Linux distributions; and for Windows users, refer to [this link](https://gitforwindows.org/)). 
 
-To access the terminal, on the `macOS`, press `Command + space bar`, and type `terminal`. The below image shows what the terminal looks like.
+To access the terminal, on the `macOS`, press `Command + space bar`, and type `terminal`. The image below shows what the terminal looks like.
 
 ![](images/terminal.png)
 
@@ -342,7 +342,7 @@ Your settings have to be similar to those shown in the following image. Also, ev
 
 In RStudio, go to `File` → `New Project` → `Version Control` → `Git`, and paste your repository address (from GitHub) on the `Repository URL` field. The `Project directory name` will be auto completed. You also have to set the `Create project as subdirectory of:` option accordingly. 
 
-The below image shows you how the spaces should be filled. After doing it, click on the `Create Project` button.
+The image below shows you how the spaces should be filled. After doing it, click on the `Create Project` button.
 
 ![](images/gitRStudio.png){width=70%}
 
@@ -360,9 +360,9 @@ Finally, when working with more people, it is a good practice to `pull` changes 
 
 ## Pushing a local RStudio project
 
-Although I said it is more common to first create a GitHub repository and then link it to the RStudio, we can also do things in the opposite order. To do this, start by creating a new RStudio project, that is, go to `File` → `New Project` → `New Directory` → `New Project` and fill the `Directory name` field with your project name. **Do not forget to check the `Create a git repository` box**. And finally, click on the `Create Project` button.
+Although I said it is more common to first create a GitHub repository and then link it to the RStudio, we can also do things in the opposite order. To do this, start by creating a new RStudio project, that is, go to `File` → `New Project` → `New Directory` → `New Project` and set the `Directory name` as project name. **Do not forget to check the `Create a git repository` box**. And finally, click on the `Create Project` button.
 
-You will end up with a window that looks like the below image.
+You will end up with a window that looks like the image below.
 
 ![](images/newproject.png){width=70%}
 

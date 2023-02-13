@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="1.1" class="anchored" data-anchor-id="preliminaries"><span class="header-section-number">1.1</span> Preliminaries</h2>
 <p>Firstly, I will assume <code>macOS</code> as the Operating System (OS) for this tutorial. Some instructions (in particular, <a href="#sec-SSHsettings">Section&nbsp;3.4.1</a>) will be OS dependent. For a broader discussion on how to set SSH keys on other platforms, you may refer to <a href="https://happygitwithr.com/ssh-keys.html">this tutorial</a>.</p>
 <p>Also, specially for the first part of this tutorial, we will do the commands manually. To do this, we will use the terminal from <code>macOS</code> (the same applies to the terminal from Linux distributions; and for Windows users, refer to <a href="https://gitforwindows.org/">this link</a>).</p>
-<p>To access the terminal, on the <code>macOS</code>, press <code>Command + space bar</code>, and type <code>terminal</code>. The below image shows what the terminal looks like.</p>
+<p>To access the terminal, on the <code>macOS</code>, press <code>Command + space bar</code>, and type <code>terminal</code>. The image below shows what the terminal looks like.</p>
 <p><img src="images/terminal.png" class="img-fluid"></p>
 <p>Many things can be done using the terminal, but for this tutorial we will focus on a specific set of instructions. In particular, other that the Git specific commands, we will use</p>
 <ul>
@@ -479,7 +479,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Your settings have to be similar to those shown in the following image. Also, even if you have set your SSH key before, it might not appear in the <code>SSH RSA key</code> field. <a href="https://happygitwithr.com/ssh-keys.html#from-rstudio">Here</a> is an explanation of why this may happen.</p>
 <p><img src="images/RStudiosettings.png" class="img-fluid" style="width:70.0%"></p>
 <p>In RStudio, go to <code>File</code> → <code>New Project</code> → <code>Version Control</code> → <code>Git</code>, and paste your repository address (from GitHub) on the <code>Repository URL</code> field. The <code>Project directory name</code> will be auto completed. You also have to set the <code>Create project as subdirectory of:</code> option accordingly.</p>
-<p>The below image shows you how the spaces should be filled. After doing it, click on the <code>Create Project</code> button.</p>
+<p>The image below shows you how the spaces should be filled. After doing it, click on the <code>Create Project</code> button.</p>
 <p><img src="images/gitRStudio.png" class="img-fluid" style="width:70.0%"></p>
 <p>Once you have created your project and linked it to the <code>RStudio</code>, a Git icon will appear on the top menu, as in the right side of this image.</p>
 <p><img src="images/giticon.png" class="img-fluid"></p>
@@ -490,8 +490,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="pushing-a-local-rstudio-project" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="pushing-a-local-rstudio-project"><span class="header-section-number">5.3</span> Pushing a local RStudio project</h2>
-<p>Although I said it is more common to first create a GitHub repository and then link it to the RStudio, we can also do things in the opposite order. To do this, start by creating a new RStudio project, that is, go to <code>File</code> → <code>New Project</code> → <code>New Directory</code> → <code>New Project</code> and fill the <code>Directory name</code> field with your project name. <strong>Do not forget to check the <code>Create a git repository</code> box</strong>. And finally, click on the <code>Create Project</code> button.</p>
-<p>You will end up with a window that looks like the below image.</p>
+<p>Although I said it is more common to first create a GitHub repository and then link it to the RStudio, we can also do things in the opposite order. To do this, start by creating a new RStudio project, that is, go to <code>File</code> → <code>New Project</code> → <code>New Directory</code> → <code>New Project</code> and set the <code>Directory name</code> as project name. <strong>Do not forget to check the <code>Create a git repository</code> box</strong>. And finally, click on the <code>Create Project</code> button.</p>
+<p>You will end up with a window that looks like the image below.</p>
 <p><img src="images/newproject.png" class="img-fluid" style="width:70.0%"></p>
 <p>However, after creating the project we still have to connect it to your GitHub repository. To do this, <a href="https://github.com/new">create a new repository <strong>on Github</strong></a> (as we have already done before), and copy your repository address (after selecting the SSH protocol). Again, it will look like</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">git@github.com:username/repository.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
